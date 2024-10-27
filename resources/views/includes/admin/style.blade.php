@@ -1,6 +1,6 @@
 <!-- Favicons -->
-<link href="{{ asset('NiceAdmin/assets/img/favicon.png') }}" rel="icon">
-<link href="{{ asset('images/logo.png') }}" rel="apple-touch-icon">
+<link href="{{ asset('images/osis.png') }}" rel="icon">
+<link href="{{ asset('images/osis.png') }}" rel="apple-touch-icon">
 
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">

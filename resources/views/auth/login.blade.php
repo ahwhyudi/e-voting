@@ -19,9 +19,9 @@
     <meta property="og:image" content="https://himafhunpam.com/logo_hima.jpg">
     <meta property="og:image" itemprop="image" content="https://himafhunpam.com/logo_hima.jpg">
     <meta property="og:updated_time" content="1440432930" />
-    <title>Login HIMA FH</title>
+    <title>Login</title>
     <!-- Favicons -->
-    <link href="{{ asset('NiceAdmin/assets/img/favicon.png') }}" rel="icon" />
+    <link href="{{ asset('images/osis.png') }}" rel="icon" />
     <link href="{{ asset('frontend/home/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon" />
 
     <link rel="stylesheet" href="{{ asset('frontend/login/css/bootstrap.min.css') }}" />
@@ -32,21 +32,21 @@
 <body>
     <link itemprop="thumbnailUrl" href="url_gambar"> <span itemprop="thumbnail" itemscope itemtype="https://himafhunpam.com/logo_hima.jpg"> 
         <link itemprop="url" href="https://himafhunpam.com/logo_hima.jpg"> </span>
-    <div class="content" style="padding-top: 20px !important;">
+    {{-- <div class="content"">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <img src="../../images/law.png" alt="Image" class="img-fluid" />
+                <div class="col-md-6 text-center " style="margin-right:-50px ">
+                    <img src="images/sma.png" alt="Image" class="img-fluid "  />
                 </div>
-                <div class="col-md-6 contents">
+                <div class="col-md-6 contents mt-5">
                     <div class="row justify-content-center needs-validation">
-                        <div class="col-md-8">
+                        <div class="col-md-8 rounded-lg border shadow">
                             <div class="mb-4 images">
-                                <img src="../../images/logo.png" class="tengah" />
+                                <img src="images/sma.png" class="tengah" style=" height: 120px"/>
                                 <br />
                                 <h3 class="deskripsi text-center">Login</h3>
                             </div>
-                            <form method="POST" action="{{ route('login') }}">
+                            <form method="POST" action="{{ route('login') }}" class="mb-5">
                                 @csrf
                                 <h5>&nbsp; NIM</h5>
                                 <div class="form-group first mb-3">
@@ -79,6 +79,46 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div> --}}
+
+    <div class=" vh-100 vw-100 d-flex justify-content-center align-items-center">
+        <div class="login-border border px-5 shadow-lg" id="login-border">
+            <div class=" images">
+                <h3 class="deskripsi text-center mt-5">Login</h3>
+                <img src="images/sma.png" class="tengah" />
+                <br />
+                <form method="POST" action="{{ route('login') }}" class="mb-5">
+                    @csrf
+                    <h5>&nbsp; NIS</h5>
+                    <div class="form-group first mb-3">
+                        <input id="username" type="text"
+                            class="form-control @error('username') is-invalid @enderror" name="username"
+                            value="{{ old('username') }}" placeholder="Masukan nis anda" required
+                            autocomplete="username" autofocus>
+                        @error('username')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>Login gagal email atau password salah</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <h5>&nbsp; Password</h5>
+                    <div class="form-group last mb-4">
+                        <input type="password" placeholder="Password" class="form-control" id="password"
+                            name="password" required autocomplete="current-password" />
+
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                <button type="submit" class="btn btn-outline-primary form-control">
+                        {{ __('Login') }}
+                    </button>
+                </form>
+            </div>
+
         </div>
     </div>
     <!-- Global site tag (gtag.js) - Google Analytics -->

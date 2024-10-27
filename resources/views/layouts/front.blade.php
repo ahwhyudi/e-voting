@@ -39,7 +39,7 @@
                         pt-4
                     ">
                 <div class="col-auto text-gray-500 font-weight-light">
-                    &copy; Copyright 2022 | Hima FH Unpam
+                    &copy; Copyright {{ date('Y') }} | Hima FH Unpam
                 </div>
             </div>
         </div>

@@ -8,27 +8,26 @@
                 ">
         <div class="logo">
             <a href="/">
-                <img src="{{ asset('images/logo.png') }}" alt="" /> </a>Hima FH Unpam
+                <img src="{{ asset('images/osis.png') }}" alt="" /> </a>Osis SMK XYZ
         </div>
 
         <nav id="navbar" class="navbar">
             <ul>
                 <li>
-                    <a class="nav-link scrollto {{ request()->is('/') ? 'active' : '' }}"
+                    <a class="nav-link scrollto  {{ request()->is('/') ? 'active' : '' }}"
                         href="{{ route('depan') }}">Home</a>
                 </li>
-                <li>
+                {{-- <li>
                     <a class="nav-link scrollto {{ request()->is('/') ? 'active' : '' }}"
                         href="#">Tulisan</a>
-                </li>
-
+                </li> --}}
                 <li>
-                    <a class="nav-link scrollto {{ request()->is('room') ? 'active' : '' }}"
-                        href="{{ route('front-room') }}"> Room</a>
+                    <a class="nav-link scrollto {{ request()->is('/') ? 'active' : '' }}"
+                        href="#calon"> Kandidat</a>
                 </li>
                 @guest
                     <li>
-                        <a class="getstarted scrollto" href="{{ route('login') }}">Login</a>
+                        <a class="getstarted scrollto btn btn-primary rounded-pill" href="{{ route('login') }}">Login</a>
                     </li>
                 @endguest
                 @auth

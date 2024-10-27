@@ -1,3 +1,8 @@
+:root{
+  --mainColor: #1E90FF;
+  --sideColor:#808080;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: #fcfcfc;
@@ -13,6 +18,7 @@ p {
 }
 
 h3 {
+  padding-top: 10px;
   font-size: 24px;
   font-weight: 600;
 }
@@ -21,7 +27,8 @@ img.tengah {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 10px;
+  height: 150px;
 }
 
 h5 {
@@ -97,12 +104,16 @@ h5 {
   height: 54px;
   padding-left: 30px;
   padding-right: 30px;
-  background-color: #962e30;
+  background-color: var(--mainColor);
   color: white;
 }
 
 .content .btn:hover {
-  background-color: #b64d4f;
+  background-color:var(--sideColor);
   color: white;
 }
 /*# sourceMappingURL=style.css.map */
+
+.form-border{
+  border-radius: 30px;
+}

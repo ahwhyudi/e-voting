@@ -28,12 +28,18 @@ class GoogleCloudRetailV2SearchResponse extends \Google\Collection
    * @var string
    */
   public $attributionToken;
+  protected $conversationalSearchResultType = GoogleCloudRetailV2SearchResponseConversationalSearchResult::class;
+  protected $conversationalSearchResultDataType = '';
   /**
    * @var string
    */
   public $correctedQuery;
+  protected $experimentInfoType = GoogleCloudRetailV2ExperimentInfo::class;
+  protected $experimentInfoDataType = 'array';
   protected $facetsType = GoogleCloudRetailV2SearchResponseFacet::class;
   protected $facetsDataType = 'array';
+  protected $invalidConditionBoostSpecsType = GoogleCloudRetailV2SearchRequestBoostSpecConditionBoostSpec::class;
+  protected $invalidConditionBoostSpecsDataType = 'array';
   /**
    * @var string
    */
@@ -46,6 +52,8 @@ class GoogleCloudRetailV2SearchResponse extends \Google\Collection
   public $redirectUri;
   protected $resultsType = GoogleCloudRetailV2SearchResponseSearchResult::class;
   protected $resultsDataType = 'array';
+  protected $tileNavigationResultType = GoogleCloudRetailV2SearchResponseTileNavigationResult::class;
+  protected $tileNavigationResultDataType = '';
   /**
    * @var int
    */
@@ -80,6 +88,20 @@ class GoogleCloudRetailV2SearchResponse extends \Google\Collection
     return $this->attributionToken;
   }
   /**
+   * @param GoogleCloudRetailV2SearchResponseConversationalSearchResult
+   */
+  public function setConversationalSearchResult(GoogleCloudRetailV2SearchResponseConversationalSearchResult $conversationalSearchResult)
+  {
+    $this->conversationalSearchResult = $conversationalSearchResult;
+  }
+  /**
+   * @return GoogleCloudRetailV2SearchResponseConversationalSearchResult
+   */
+  public function getConversationalSearchResult()
+  {
+    return $this->conversationalSearchResult;
+  }
+  /**
    * @param string
    */
   public function setCorrectedQuery($correctedQuery)
@@ -94,6 +116,20 @@ class GoogleCloudRetailV2SearchResponse extends \Google\Collection
     return $this->correctedQuery;
   }
   /**
+   * @param GoogleCloudRetailV2ExperimentInfo[]
+   */
+  public function setExperimentInfo($experimentInfo)
+  {
+    $this->experimentInfo = $experimentInfo;
+  }
+  /**
+   * @return GoogleCloudRetailV2ExperimentInfo[]
+   */
+  public function getExperimentInfo()
+  {
+    return $this->experimentInfo;
+  }
+  /**
    * @param GoogleCloudRetailV2SearchResponseFacet[]
    */
   public function setFacets($facets)
@@ -106,6 +142,20 @@ class GoogleCloudRetailV2SearchResponse extends \Google\Collection
   public function getFacets()
   {
     return $this->facets;
+  }
+  /**
+   * @param GoogleCloudRetailV2SearchRequestBoostSpecConditionBoostSpec[]
+   */
+  public function setInvalidConditionBoostSpecs($invalidConditionBoostSpecs)
+  {
+    $this->invalidConditionBoostSpecs = $invalidConditionBoostSpecs;
+  }
+  /**
+   * @return GoogleCloudRetailV2SearchRequestBoostSpecConditionBoostSpec[]
+   */
+  public function getInvalidConditionBoostSpecs()
+  {
+    return $this->invalidConditionBoostSpecs;
   }
   /**
    * @param string
@@ -162,6 +212,20 @@ class GoogleCloudRetailV2SearchResponse extends \Google\Collection
   public function getResults()
   {
     return $this->results;
+  }
+  /**
+   * @param GoogleCloudRetailV2SearchResponseTileNavigationResult
+   */
+  public function setTileNavigationResult(GoogleCloudRetailV2SearchResponseTileNavigationResult $tileNavigationResult)
+  {
+    $this->tileNavigationResult = $tileNavigationResult;
+  }
+  /**
+   * @return GoogleCloudRetailV2SearchResponseTileNavigationResult
+   */
+  public function getTileNavigationResult()
+  {
+    return $this->tileNavigationResult;
   }
   /**
    * @param int

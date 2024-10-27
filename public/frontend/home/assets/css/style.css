@@ -11,6 +11,10 @@
 /* class gusti */
 
 /* endclass */
+:root{
+    --mainColor: #1E90FF;
+    --sideColor:#808080;
+  }
 
 body {
     font-family: "Poppins", sans-serif;
@@ -147,20 +151,20 @@ h6 {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover > a {
-    color: #962e30;
+    color: var(--sideColor);
 }
 .navbar .getstarted,
 .navbar .getstarted:focus {
-    background: #962e30;
+    /* background: #962e30; */
     padding: 8px 25px;
     margin-left: 30px;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     color: #fff;
 }
 .navbar .getstarted:hover,
 .navbar .getstarted:focus:hover {
     color: #fff;
-    background: #b64d4f;
+    /* background: #b64d4f; */
 }
 .navbar .dropdown ul {
     display: block;
@@ -344,11 +348,12 @@ h6 {
     padding: 10px 30px;
     border-radius: 50px;
     transition: 0.3s;
-    color: #962e30;
-    border: 2px solid #962e30;
+    color: var(--sideColor);
+    border: 2px solid var(--sideColor);
 }
 #hero .btn-get-started:hover {
-    background: #962e30;
+    background: var(--mainColor);
+    border: 2px solid var(--mainColor);
     color: #fff;
 }
 #hero .animated {
@@ -423,7 +428,7 @@ section {
 }
 
 .section-bg {
-    background-color: #fff9f9;
+    background-color: #ffff;
 }
 
 .section-title {
@@ -442,7 +447,7 @@ section {
     content: "";
     width: 50px;
     height: 2px;
-    background: #962e30;
+    background: var(--sideColor);
     display: inline-block;
 }
 .section-title h2::before {
@@ -557,14 +562,14 @@ section {
     position: relative;
     overflow: hidden;
 }
-.team .member .btn {
+/* .team .member .btn {
     background-color: #962e30;
     color: white;
-}
-.team .member .btn:hover {
+} */
+/* .team .member .btn:hover {
     background-color: #b64d4f;
     color: white;
-}
+} */
 .team .member .member-info {
     padding: 25px 15px;
 }
@@ -600,7 +605,7 @@ section {
     border-bottom: 1px solid #eeeeee;
 }
 .faq .faq-item i {
-    color: #962e30;
+    color: var(--mainColor);
     font-size: 24px;
     float: left;
     line-height: 0;
@@ -643,7 +648,7 @@ section {
     font-size: 18px;
     display: inline-block;
     background: #fff;
-    color: #962e30;
+    color: var(--sideColor);
     line-height: 1;
     padding: 8px 0;
     margin-right: 4px;
@@ -652,10 +657,10 @@ section {
     width: 36px;
     height: 36px;
     transition: 0.3s;
-    border: 1px solid #962e30;
+    border: 1px solid var(--sideColor);
 }
 .contact .social-links a:hover {
-    background: #962e30;
+    background: var(--sideColor);
     color: #fff;
 }
 .contact .info {
@@ -663,7 +668,7 @@ section {
 }
 .contact .info i {
     font-size: 32px;
-    color: #962e30;
+    color: var(--sideColor);
     float: left;
     line-height: 1;
 }
@@ -675,7 +680,7 @@ section {
 .contact .php-email-form .error-message {
     display: none;
     color: #fff;
-    background: #ed3c0d;
+    background: red;
     text-align: left;
     padding: 15px;
     font-weight: 600;
@@ -723,17 +728,17 @@ section {
 .contact .php-email-form textarea:focus {
     border-color: #962e30;
 }
-.contact .php-email-form button[type="submit"] {
+/* .contact .php-email-form button[type="submit"] {
     background: #962e30;
     border: 0;
     padding: 10px 24px;
     color: #fff;
     transition: 0.4s;
     border-radius: 50px;
-}
-.contact .php-email-form button[type="submit"]:hover {
+} */
+/* .contact .php-email-form button[type="submit"]:hover {
     background: #962e30;
-}
+} */
 @-webkit-keyframes animate-loading {
     0% {
         transform: rotate(0deg);

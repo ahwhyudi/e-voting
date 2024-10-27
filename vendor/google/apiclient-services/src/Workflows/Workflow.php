@@ -17,8 +17,21 @@
 
 namespace Google\Service\Workflows;
 
-class Workflow extends \Google\Model
+class Workflow extends \Google\Collection
 {
+  protected $collection_key = 'allKmsKeysVersions';
+  /**
+   * @var string[]
+   */
+  public $allKmsKeys;
+  /**
+   * @var string[]
+   */
+  public $allKmsKeysVersions;
+  /**
+   * @var string
+   */
+  public $callLogLevel;
   /**
    * @var string
    */
@@ -26,7 +39,19 @@ class Workflow extends \Google\Model
   /**
    * @var string
    */
+  public $cryptoKeyName;
+  /**
+   * @var string
+   */
+  public $cryptoKeyVersion;
+  /**
+   * @var string
+   */
   public $description;
+  /**
+   * @var string
+   */
+  public $executionHistoryLevel;
   /**
    * @var string[]
    */
@@ -55,11 +80,59 @@ class Workflow extends \Google\Model
    * @var string
    */
   public $state;
+  protected $stateErrorType = StateError::class;
+  protected $stateErrorDataType = '';
   /**
    * @var string
    */
   public $updateTime;
+  /**
+   * @var string[]
+   */
+  public $userEnvVars;
 
+  /**
+   * @param string[]
+   */
+  public function setAllKmsKeys($allKmsKeys)
+  {
+    $this->allKmsKeys = $allKmsKeys;
+  }
+  /**
+   * @return string[]
+   */
+  public function getAllKmsKeys()
+  {
+    return $this->allKmsKeys;
+  }
+  /**
+   * @param string[]
+   */
+  public function setAllKmsKeysVersions($allKmsKeysVersions)
+  {
+    $this->allKmsKeysVersions = $allKmsKeysVersions;
+  }
+  /**
+   * @return string[]
+   */
+  public function getAllKmsKeysVersions()
+  {
+    return $this->allKmsKeysVersions;
+  }
+  /**
+   * @param string
+   */
+  public function setCallLogLevel($callLogLevel)
+  {
+    $this->callLogLevel = $callLogLevel;
+  }
+  /**
+   * @return string
+   */
+  public function getCallLogLevel()
+  {
+    return $this->callLogLevel;
+  }
   /**
    * @param string
    */
@@ -77,6 +150,34 @@ class Workflow extends \Google\Model
   /**
    * @param string
    */
+  public function setCryptoKeyName($cryptoKeyName)
+  {
+    $this->cryptoKeyName = $cryptoKeyName;
+  }
+  /**
+   * @return string
+   */
+  public function getCryptoKeyName()
+  {
+    return $this->cryptoKeyName;
+  }
+  /**
+   * @param string
+   */
+  public function setCryptoKeyVersion($cryptoKeyVersion)
+  {
+    $this->cryptoKeyVersion = $cryptoKeyVersion;
+  }
+  /**
+   * @return string
+   */
+  public function getCryptoKeyVersion()
+  {
+    return $this->cryptoKeyVersion;
+  }
+  /**
+   * @param string
+   */
   public function setDescription($description)
   {
     $this->description = $description;
@@ -87,6 +188,20 @@ class Workflow extends \Google\Model
   public function getDescription()
   {
     return $this->description;
+  }
+  /**
+   * @param string
+   */
+  public function setExecutionHistoryLevel($executionHistoryLevel)
+  {
+    $this->executionHistoryLevel = $executionHistoryLevel;
+  }
+  /**
+   * @return string
+   */
+  public function getExecutionHistoryLevel()
+  {
+    return $this->executionHistoryLevel;
   }
   /**
    * @param string[]
@@ -187,6 +302,20 @@ class Workflow extends \Google\Model
     return $this->state;
   }
   /**
+   * @param StateError
+   */
+  public function setStateError(StateError $stateError)
+  {
+    $this->stateError = $stateError;
+  }
+  /**
+   * @return StateError
+   */
+  public function getStateError()
+  {
+    return $this->stateError;
+  }
+  /**
    * @param string
    */
   public function setUpdateTime($updateTime)
@@ -199,6 +328,20 @@ class Workflow extends \Google\Model
   public function getUpdateTime()
   {
     return $this->updateTime;
+  }
+  /**
+   * @param string[]
+   */
+  public function setUserEnvVars($userEnvVars)
+  {
+    $this->userEnvVars = $userEnvVars;
+  }
+  /**
+   * @return string[]
+   */
+  public function getUserEnvVars()
+  {
+    return $this->userEnvVars;
   }
 }
 

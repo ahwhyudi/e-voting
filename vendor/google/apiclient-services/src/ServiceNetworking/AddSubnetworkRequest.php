@@ -21,6 +21,18 @@ class AddSubnetworkRequest extends \Google\Collection
 {
   protected $collection_key = 'subnetworkUsers';
   /**
+   * @var bool
+   */
+  public $allowSubnetCidrRoutesOverlap;
+  /**
+   * @var bool
+   */
+  public $checkServiceNetworkingUsePermission;
+  /**
+   * @var string
+   */
+  public $computeIdempotencyWindow;
+  /**
    * @var string
    */
   public $consumer;
@@ -32,6 +44,10 @@ class AddSubnetworkRequest extends \Google\Collection
    * @var string
    */
   public $description;
+  /**
+   * @var string
+   */
+  public $internalRange;
   /**
    * @var int
    */
@@ -60,8 +76,16 @@ class AddSubnetworkRequest extends \Google\Collection
    * @var string[]
    */
   public $requestedRanges;
+  /**
+   * @var string
+   */
+  public $role;
   protected $secondaryIpRangeSpecsType = SecondaryIpRangeSpec::class;
   protected $secondaryIpRangeSpecsDataType = 'array';
+  /**
+   * @var bool
+   */
+  public $skipRequestedAddressValidation;
   /**
    * @var string
    */
@@ -70,7 +94,53 @@ class AddSubnetworkRequest extends \Google\Collection
    * @var string[]
    */
   public $subnetworkUsers;
+  /**
+   * @var bool
+   */
+  public $useCustomComputeIdempotencyWindow;
 
+  /**
+   * @param bool
+   */
+  public function setAllowSubnetCidrRoutesOverlap($allowSubnetCidrRoutesOverlap)
+  {
+    $this->allowSubnetCidrRoutesOverlap = $allowSubnetCidrRoutesOverlap;
+  }
+  /**
+   * @return bool
+   */
+  public function getAllowSubnetCidrRoutesOverlap()
+  {
+    return $this->allowSubnetCidrRoutesOverlap;
+  }
+  /**
+   * @param bool
+   */
+  public function setCheckServiceNetworkingUsePermission($checkServiceNetworkingUsePermission)
+  {
+    $this->checkServiceNetworkingUsePermission = $checkServiceNetworkingUsePermission;
+  }
+  /**
+   * @return bool
+   */
+  public function getCheckServiceNetworkingUsePermission()
+  {
+    return $this->checkServiceNetworkingUsePermission;
+  }
+  /**
+   * @param string
+   */
+  public function setComputeIdempotencyWindow($computeIdempotencyWindow)
+  {
+    $this->computeIdempotencyWindow = $computeIdempotencyWindow;
+  }
+  /**
+   * @return string
+   */
+  public function getComputeIdempotencyWindow()
+  {
+    return $this->computeIdempotencyWindow;
+  }
   /**
    * @param string
    */
@@ -112,6 +182,20 @@ class AddSubnetworkRequest extends \Google\Collection
   public function getDescription()
   {
     return $this->description;
+  }
+  /**
+   * @param string
+   */
+  public function setInternalRange($internalRange)
+  {
+    $this->internalRange = $internalRange;
+  }
+  /**
+   * @return string
+   */
+  public function getInternalRange()
+  {
+    return $this->internalRange;
   }
   /**
    * @param int
@@ -212,6 +296,20 @@ class AddSubnetworkRequest extends \Google\Collection
     return $this->requestedRanges;
   }
   /**
+   * @param string
+   */
+  public function setRole($role)
+  {
+    $this->role = $role;
+  }
+  /**
+   * @return string
+   */
+  public function getRole()
+  {
+    return $this->role;
+  }
+  /**
    * @param SecondaryIpRangeSpec[]
    */
   public function setSecondaryIpRangeSpecs($secondaryIpRangeSpecs)
@@ -224,6 +322,20 @@ class AddSubnetworkRequest extends \Google\Collection
   public function getSecondaryIpRangeSpecs()
   {
     return $this->secondaryIpRangeSpecs;
+  }
+  /**
+   * @param bool
+   */
+  public function setSkipRequestedAddressValidation($skipRequestedAddressValidation)
+  {
+    $this->skipRequestedAddressValidation = $skipRequestedAddressValidation;
+  }
+  /**
+   * @return bool
+   */
+  public function getSkipRequestedAddressValidation()
+  {
+    return $this->skipRequestedAddressValidation;
   }
   /**
    * @param string
@@ -252,6 +364,20 @@ class AddSubnetworkRequest extends \Google\Collection
   public function getSubnetworkUsers()
   {
     return $this->subnetworkUsers;
+  }
+  /**
+   * @param bool
+   */
+  public function setUseCustomComputeIdempotencyWindow($useCustomComputeIdempotencyWindow)
+  {
+    $this->useCustomComputeIdempotencyWindow = $useCustomComputeIdempotencyWindow;
+  }
+  /**
+   * @return bool
+   */
+  public function getUseCustomComputeIdempotencyWindow()
+  {
+    return $this->useCustomComputeIdempotencyWindow;
   }
 }
 

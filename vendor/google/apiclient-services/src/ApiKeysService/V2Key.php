@@ -20,6 +20,10 @@ namespace Google\Service\ApiKeysService;
 class V2Key extends \Google\Model
 {
   /**
+   * @var string[]
+   */
+  public $annotations;
+  /**
    * @var string
    */
   public $createTime;
@@ -48,12 +52,30 @@ class V2Key extends \Google\Model
   /**
    * @var string
    */
+  public $serviceAccountEmail;
+  /**
+   * @var string
+   */
   public $uid;
   /**
    * @var string
    */
   public $updateTime;
 
+  /**
+   * @param string[]
+   */
+  public function setAnnotations($annotations)
+  {
+    $this->annotations = $annotations;
+  }
+  /**
+   * @return string[]
+   */
+  public function getAnnotations()
+  {
+    return $this->annotations;
+  }
   /**
    * @param string
    */
@@ -151,6 +173,20 @@ class V2Key extends \Google\Model
   public function getRestrictions()
   {
     return $this->restrictions;
+  }
+  /**
+   * @param string
+   */
+  public function setServiceAccountEmail($serviceAccountEmail)
+  {
+    $this->serviceAccountEmail = $serviceAccountEmail;
+  }
+  /**
+   * @return string
+   */
+  public function getServiceAccountEmail()
+  {
+    return $this->serviceAccountEmail;
   }
   /**
    * @param string
