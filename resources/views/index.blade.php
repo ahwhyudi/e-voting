@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img d-flex justidy-content-center align-items-center" data-aos="fade-left" data-aos-delay="200">
-                    <img src="{{ asset('images/bannerOsis.png') }}" class="img-fluid animated"  style="heigt:600px" alt="" />
+                    <img src="{{ asset('images/bannerosis.png') }}" class="img-fluid animated"  style="heigt:600px" alt="" />
                 </div>
             </div>
         </div>
