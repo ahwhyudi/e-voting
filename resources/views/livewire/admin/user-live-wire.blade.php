@@ -1,36 +1,16 @@
 <div>
     @section('title')
-        User Manajemen
+        Data Siswa
     @endsection
     <div>
         <div class="card">
             <div class="card-body">
                 <div class="row my-3">
-                    <div class="col-6 d-flex justify-content-end">
-                        {{-- file excel input --}}
-                        <div class="">
-                            <div class="input-group">
-                                <input type="file" class="form-control" wire:model="fileExcel"
-                                    id="{{ $iteration }}">
-                                <div class="btn btn-himafh" wire:click="hendleImportExcel">
-                                    Button</div>
-                            </div>
-                            <div>
-                                @error('fileExcel') <span class="text-danger">{{ $message . '!' }}</span> @enderror
-                            </div>
-                        </div>
-
-                        <div class="text-primary mt-2" wire:loading wire:target="hendleImportExcel">
-                            <div class="spinner-border" role="status">
-                                <span class="sr-only"></span>
-                            </div>
-                        </div>
-
+                    <div class="col-md-2">
+                        <a href="{{ route('dpt.create') }}" class="btn btn-primary">
+                            Tambah Data
+                        </a>
                     </div>
-                    <div class="col">
-                        <div class="btn btn-himafh" wire:click="generatePassword">Isi Password kosong</div>
-                    </div>
-
                 </div>
 
                 <div class="card">
@@ -47,20 +27,7 @@
                                     </div>
                                 </span>
                             </div>
-                            <div class="col">
-                                <label for="">Pilih Reguler</label>
-                                <select class="form-select" wire:model="filterReg">
-                                    <option value="">Semua Reguler</option>
-                                    <option value="A">Reguler A</option>
-                                    <option value="B">Reguler B</option>
-                                    <option value="C">Reguler C</option>
-                                </select>
-                                <span class="text-primary mt-2" wire:loading wire:target="filterReg">
-                                    <div class="spinner-border" role="status">
-                                        <span class="sr-only"></span>
-                                    </div>
-                                </span>
-                            </div>
+
                             <div class="col">
                                 <label for="">Jumlah Data</label>
                                 <select class="form-select" wire:model="jmlData">
@@ -79,74 +46,40 @@
                         </div>
                         {{-- endfilter table --}}
                         <!-- Default Table -->
-                        <table class="table table-hover text-xsmall">
+                        <table class="table table-hover text-xsmall table-bordered mt-4">
                             <thead>
                                 <tr class="fs-6">
-                                    <th scope="col">NO</th>
                                     <th scope="col">NAMA</th>
-                                    <th scope="col">NIM</th>
-                                    <th scope="col">REGULER</th>
+                                    <th scope="col">NISN</th>
                                     <th scope="col">ACTION</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $i = 1;
-                                @endphp
-                                @forelse ($users as $item)
-                                    {{-- untuk di edit --}}
-                                    @if ($userId === $item->id && $click >= 2)
-                                        <tr>
-                                            <th scope="row">{{ $i }}</th>
-                                            <td><input type="text" class="form-control form-control-sm"
-                                                    wire:keydown.enter="update" wire:model="name"></td>
-                                            <td><input type="number" class="form-control form-control-sm"
-                                                    wire:keydown.enter="update" wire:model="nim"></td>
-                                            <td><input type="text" class="form-control form-control-sm"
-                                                    wire:keydown.enter="update" wire:model="reg"></td>
-                                            <td wire:click="doubleClick({{ 0 }})" class="text-primary">
-                                                Cancel</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="5">
-                                                <span class="text-primary mt-2 d-flex justify-content-center">
-                                                    <div class="spinner-border" role="status" wire:loading
-                                                        wire:target="update">
-                                                        <span class="sr-only"></span>
-                                                    </div>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td wire:click="doubleClick({{ $item->id }})">{{ $i }}
-                                            </td>
-                                            <td wire:click="doubleClick({{ $item->id }})">{{ $item->name }}
-                                            </td>
-                                            <td wire:click="doubleClick({{ $item->id }})">
-                                                {{ Str::limit($item->username, 6, $end = '******') }}</td>
-                                            <td wire:click="doubleClick({{ $item->id }})">
-                                                {{ $item->reguler }}</td>
-                                            <td class="">
-                                                <a href="https://wa.me/62{{ $item->no_tlp }}/?text=Hallo {{ $item->name }}, kami dari tim KPU Hima FH. %0a %0aIni nim anda: {{ $item->username }} %0aPassword login untuk vote pemilihan ketua dan wakil ketua umum Hima FH anda : {{ $item->password_c }} %0aAdapun jadwal anda: {{$item->jadwal}}%0a %0aJangan sebarkan password ini kepada siapapun!%0a %0aLink Vote: https://himafhunpam.com %0aLink Tutorial Vote: bit.ly/TutorialEvotingHimaFhUnpam %0aJangan lupa untuk memilih ya:)"
-                                                    class="btn btn-link text-success">
-                                                    <i class="bi bi-whatsapp"></i>
+                                @forelse ($users as $user)
+                                    <tr>
+                                        <td>
+                                            {{ $user->nama_lengkap }}
+                                        </td>
+                                        <td>
+                                            {{ $user->nisn }}
+                                        </td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="{{ route('dpt.edit', $user->id) }}"
+                                                    class="btn btn-primary btn-sm">
+                                                    Edit
                                                 </a>
-                                                <div class="text-danger btn btn-link"
-                                                    wire:click="hapus({{ $item->id }})">
-                                                    <i class="bi bi-trash"></i>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endif
-
-
-                                    @php
-                                        $i++;
-                                    @endphp
-
+                                                <form action="{{ route('dpt.destroy', $user->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <span class="btn btn-danger ms-3 btn-sm confirm_delete">
+                                                        Hapus
+                                                    </span>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @empty
-
                                 @endforelse
                             </tbody>
                         </table>

@@ -13,18 +13,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'username', 'no_tlp',
-        'kelas', 'reguler', 'roles', 'passwordtwo'
-    ];
+    protected $table = "user";
+
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -56,18 +47,19 @@ class User extends Authenticatable
     }
     public function getJadwalAttribute()
     {
-       if($this->reguler === 'A'){
-           return "Senin, 17 Januari 2022. Pukul 08.00 - 15.00 WIB";
-       }elseif($this->reguler === 'B'){
-        return "Selasa, 18 Januari 2022. Pukul 08.00 - 15.00 WIB";
-       }else{
-        return "Rabu, 19 Januari 2022. Pukul 08.00 - 15.00 WIB";
-       }
+        if ($this->reguler === 'A') {
+            return "Senin, 17 Januari 2022. Pukul 08.00 - 15.00 WIB";
+        } elseif ($this->reguler === 'B') {
+            return "Selasa, 18 Januari 2022. Pukul 08.00 - 15.00 WIB";
+        } else {
+            return "Rabu, 19 Januari 2022. Pukul 08.00 - 15.00 WIB";
+        }
     }
 
     protected $appends = ['password_c', 'jadwal'];
 
-    public function suara(){
+    public function suara()
+    {
         return $this->hasMany('App\Models\Suara');
     }
 }

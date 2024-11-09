@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PaslonRequest;
-use App\Models\Kandidat;
-use App\Models\Paslon;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class PaslonController extends Controller
+class DPTController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,7 @@ class PaslonController extends Controller
      */
     public function index()
     {
-        $paslon = Paslon::orderBy("id", "desc")->get();
-
-        return view('pages.admin.paslon.index', [
-            'items' => $paslon
-        ]);
+        //
     }
 
     /**
@@ -31,9 +26,7 @@ class PaslonController extends Controller
      */
     public function create()
     {
-
-
-        return view('pages.admin.paslon.create');
+        return view("livewire.admin.dpt.create");
     }
 
     /**
@@ -44,13 +37,17 @@ class PaslonController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "nisn" => "required|unique:user,nisn"
+        ]);
+
         $data = $request->except("_token", "_method");
-        $image = $request->file('foto')->store('image/paslon', 'public');
-        $data['foto'] = $image;
 
-        $paslon = Paslon::create($data);
+        $data["password"] = Hash::make($request->password);
 
-        return redirect()->route('dashboard.paslon.index')->with('success', 'berhasil tambah pasangan calon');
+        $user = User::create($data);
+
+        return redirect()->back()->with("success", "Berhasil simpan data");
     }
 
     /**
@@ -72,9 +69,9 @@ class PaslonController extends Controller
      */
     public function edit($id)
     {
-        $paslon = Paslon::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        return view('pages.admin.paslon.edit', compact("paslon"));
+        return view("livewire.admin.dpt.edit", compact("user"));
     }
 
     /**
@@ -86,18 +83,23 @@ class PaslonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $paslon = Paslon::findOrFail($id);
-        $data = $request->except("_token", "_method");
+        $user = User::findOrFail($id);
 
-        if ($request->foto) {
-            $image = $request->file('foto')->store('image/paslon', 'public');
-            $data['foto'] = $image;
+        if ($user->nisn !== $request->nisn) {
+            $request->validate([
+                "nisn" => "required|unique:user,nisn"
+            ]);
         }
 
-        $paslon->update($data);
+        $data = $request->except("_token", "_method", "password");
 
+        if ($request->password) {
+            $data["password"] = Hash::make($request->password);
+        }
 
-        return redirect()->route('dashboard.paslon.index')->with('success', 'berhasil update pasangan calon');
+        $user->update($data);
+
+        return redirect()->back()->with("success", "Berhasil update data");
     }
 
     /**
@@ -108,9 +110,10 @@ class PaslonController extends Controller
      */
     public function destroy($id)
     {
-        $paslon = Paslon::findOrFail($id);
-        $paslon->delete();
+        $user = User::findOrFail($id);
 
-        return redirect()->route('dashboard.paslon.index')->with('success', 'berhasil hapus pasangan calon');
+        $user->delete();
+
+        return redirect()->back()->with("success", "Berhasil hapus data");
     }
 }

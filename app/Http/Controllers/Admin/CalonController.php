@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PaslonRequest;
-use App\Models\Kandidat;
-use App\Models\Paslon;
 use Illuminate\Http\Request;
 
-class PaslonController extends Controller
+class CalonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +14,7 @@ class PaslonController extends Controller
      */
     public function index()
     {
-        $paslon = Paslon::orderBy("id", "desc")->get();
-
-        return view('pages.admin.paslon.index', [
-            'items' => $paslon
-        ]);
+        //
     }
 
     /**
@@ -31,9 +24,7 @@ class PaslonController extends Controller
      */
     public function create()
     {
-
-
-        return view('pages.admin.paslon.create');
+        //
     }
 
     /**
@@ -44,13 +35,7 @@ class PaslonController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except("_token", "_method");
-        $image = $request->file('foto')->store('image/paslon', 'public');
-        $data['foto'] = $image;
-
-        $paslon = Paslon::create($data);
-
-        return redirect()->route('dashboard.paslon.index')->with('success', 'berhasil tambah pasangan calon');
+        //
     }
 
     /**
@@ -72,9 +57,7 @@ class PaslonController extends Controller
      */
     public function edit($id)
     {
-        $paslon = Paslon::findOrFail($id);
-
-        return view('pages.admin.paslon.edit', compact("paslon"));
+        //
     }
 
     /**
@@ -86,18 +69,7 @@ class PaslonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $paslon = Paslon::findOrFail($id);
-        $data = $request->except("_token", "_method");
-
-        if ($request->foto) {
-            $image = $request->file('foto')->store('image/paslon', 'public');
-            $data['foto'] = $image;
-        }
-
-        $paslon->update($data);
-
-
-        return redirect()->route('dashboard.paslon.index')->with('success', 'berhasil update pasangan calon');
+        //
     }
 
     /**
@@ -108,9 +80,6 @@ class PaslonController extends Controller
      */
     public function destroy($id)
     {
-        $paslon = Paslon::findOrFail($id);
-        $paslon->delete();
-
-        return redirect()->route('dashboard.paslon.index')->with('success', 'berhasil hapus pasangan calon');
+        //
     }
 }

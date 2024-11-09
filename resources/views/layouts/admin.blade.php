@@ -31,7 +31,14 @@
 
         </div><!-- End Page Title -->
 
-        <section class="section">
+        @if (Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ Session::get('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        <section class="section" style="min-height: 100vh">
             @yield('content')
         </section>
 
@@ -51,11 +58,15 @@
 
     @include('includes.admin.script')
 
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-217270429-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
 
         gtag('config', 'UA-217270429-1');
@@ -67,6 +78,33 @@
     <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
     <x-livewire-alert::flash />
     @stack('script')
+
+    <script>
+        $(".confirm_delete").on("click", function() {
+            var form = $(this).closest("form");
+            event.preventDefault();
+            let message = $(this).attr("data-message");
+
+
+            if (message) {
+                message = `Data ${message} akan dihapus`
+            }
+
+            Swal.fire({
+                title: "Hapus Data Ini ?",
+                icon: "warning",
+                text: message ? message : "",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        })
+    </script>
 
 
 </body>

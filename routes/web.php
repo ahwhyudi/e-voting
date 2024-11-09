@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\DPTController;
+use App\Http\Controllers\Admin\KandidatController;
 use App\Http\Controllers\Admin\PaslonController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepanController;
 use App\Http\Controllers\Front\ProfileKandidatController;
 use App\Http\Livewire\Admin\CalonLiveWire;
@@ -46,11 +49,20 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // admin
-Route::get('dashboard/users', UserLiveWire::class)->name('livewire-user')->middleware('auth');
-Route::get('dashboard/rooms', RoomLiveWire::class)->name('livewire-room')->middleware('auth');
-Route::get('dashboard/calons', CalonLiveWire::class)->name('livewire-calon')->middleware('auth');
-Route::get('dashboard/calons/tambah', TambahKandidatLiveWire::class)->name('livewire-calon-create')->middleware('auth');
-Route::resource('dashboard/calons/paslon', PaslonController::class)->middleware('auth');
+Route::get('dashboard/users', UserLiveWire::class)->name('livewire-user');
+Route::get('dashboard/rooms', RoomLiveWire::class)->name('livewire-room');
+Route::get('dashboard/calons', CalonLiveWire::class)->name('livewire-calon');
+Route::get('dashboard/calons/tambah', TambahKandidatLiveWire::class)->name('livewire-calon-create');
+Route::resource('dashboard/calons/paslon', PaslonController::class);
+Route::resource('dashboard/dpt', DPTController::class);
+
+
+Route::prefix("dashboard")->name("dashboard.")->group(function () {
+    // Route::prefix()
+    Route::resource("kandidat", KandidatController::class);
+    Route::resource("paslon", PaslonController::class);
+});
+
 
 // front
 Route::get('profile-kandidat/{id}', [ProfileKandidatController::class, 'index'])->name('profile');
@@ -68,7 +80,7 @@ Route::get('logout', function () {
 
 
 
-// cek duplikat 
+// cek duplikat
 Route::get('duplikat', function () {
     $data = User::whereIn('username', function ($query) {
         $query->select('username')->from('users')->groupBy('username')->havingRaw('count(*) > 1');
@@ -76,13 +88,12 @@ Route::get('duplikat', function () {
     return response()->json($data);
 });
 
-Route::get('secret', function(){
+Route::get('secret', function () {
     $user = User::with('suara')->get();
 
     return response()->json([$user]);
 })->middleware('auth', 'admin');
 
-Route::get('analisis', function(){
-    $data = Analytics::fetchMostVisitedPages(Period::days(7));
-    dd($data);
-});
+
+
+Route::post("prosesLogin", [AuthController::class, "prosesLogin"])->name("prosesLogin");

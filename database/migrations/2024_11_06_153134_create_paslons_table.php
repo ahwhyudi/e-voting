@@ -13,14 +13,15 @@ class CreatePaslonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('paslons', function (Blueprint $table) {
+        Schema::create('paslon', function (Blueprint $table) {
             $table->id();
-            $table->integer('nomor');
-            $table->longText('visi');
-            $table->longText('misi');
-            $table->integer('ketua_id');
-            $table->integer('wakil_id');
-            $table->longText('frame_ytb')->nullable();
+            $table->string("nama_lengkap_ketua");
+            $table->string("nama_lengkap_wakil");
+            $table->string("foto");
+            $table->string("nomor");
+            $table->longText("frame_youtube")->nullable();
+            $table->longText("visi");
+            $table->longText("misi");
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreatePaslonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paslons');
+        Schema::dropIfExists('paslon');
     }
 }

@@ -19,41 +19,39 @@
             {{ session('status') }}
         </div>
     @endif
-    <form action="{{ route('paslon.store') }}" method="post"  enctype="multipart/form-data">
+    <form action="{{ route('dashboard.paslon.store') }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="card">
             <div class="card-body">
                 <div class="row mt-2">
-                    <div class="col-md-6">
+
+                    <div class="col-md-6 mb-3">
+                        <label for="" class="form-label">
+                            Nama Lengkap Calon Ketua
+                        </label>
+                        <input type="text" class="form-control" name="nama_lengkap_ketua">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="" class="form-label">
+                            Nama Lengkap Calon Wakil Ketua
+                        </label>
+                        <input type="text" class="form-control" name="nama_lengkap_wakil">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
                         <label for="">Masukan Foto</label>
                         <input type="file" class="form-control" name="foto">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
                         <label for="">Frame Youtube</label>
-                        <input type="text" class="form-control" name="frame_ytb">
+                        <input type="text" class="form-control" name="frame_youtube">
                     </div>
                     <div class="col-12">
                         <label for="">Pasang Nomor Urut</label>
                         <input type="number" class="form-control" name="nomor" value="{{ old('nomor') }}">
                     </div>
-                    <div class="col-6">
-                        <label for="">Ketua</label>
-                        <select name="ketua_id" class="form-select">
-                            <option>Pilih Ketua</option>
-                            @foreach ($ketuas as $item)
-                                <option value="{{ $item->id }}">{{ $item->user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-6">
-                        <label for="">Wakil</label>
-                        <select name="wakil_id" class="form-select">
-                            <option>Pilih Wakil</option>
-                            @foreach ($wakils as $item)
-                                <option value="{{ $item->id }}">{{ $item->user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
                     <div class="col-6">
                         <label for=""> Visi</label>
                         <textarea id="editor" name="visi">{{ old('visi') }}</textarea>
@@ -75,6 +73,5 @@
             CKEDITOR.replace("editor");
             CKEDITOR.replace("editor2");
         </script>
-
     @endpush
 @endsection

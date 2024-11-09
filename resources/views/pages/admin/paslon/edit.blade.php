@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Edit Pasangan Calon
+    Create Pasangan Calon
 @endsection
 
 @section('content')
@@ -19,42 +19,51 @@
             {{ session('status') }}
         </div>
     @endif
-    <form action="{{ route('paslon.store') }}" method="post">
-        @csrf
+    <form action="{{ route('dashboard.paslon.update', $paslon->id) }}" method="post" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        @method('PUT')
         <div class="card">
             <div class="card-body">
-                <div class="row">
+                <div class="row mt-2">
+
+                    <div class="col-md-6 mb-3">
+                        <label for="" class="form-label">
+                            Nama Lengkap Calon Ketua
+                        </label>
+                        <input type="text" class="form-control" name="nama_lengkap_ketua"
+                            value="{{ $paslon->nama_lengkap_ketua }}">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="" class="form-label">
+                            Nama Lengkap Calon Wakil Ketua
+                        </label>
+                        <input type="text" class="form-control" name="nama_lengkap_wakil"
+                            value="{{ $paslon->nama_lengkap_wakil }}">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="">Masukan Foto</label>
+                        <input type="file" class="form-control" name="foto">
+                        <small>*Kosongkan jika tidak ingin di ubah</small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="">Frame Youtube</label>
+                        <input type="text" class="form-control" name="frame_youtube"
+                            value="{{ $paslon->frame_youtube }}">
+                    </div>
                     <div class="col-12">
                         <label for="">Pasang Nomor Urut</label>
-                        <input type="number" class="form-control" name="nomor" value="{{ $data->nomor }}">
+                        <input type="number" class="form-control" name="nomor" value="{{ $paslon->nomor }}">
                     </div>
-                    <div class="col-6">
-                        <label for="">Ketua</label>
-                        <select name="ketua_id" class="form-select">
-                            <option>Pilih Ketua</option>
-                            @foreach ($ketuas as $item)
-                                <option value="{{ $item->id }}" {{ $item->id === $data->ketua_id ? 'selected' : '' }}>
-                                    {{ $item->user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-6">
-                        <label for="">Wakil</label>
-                        <select name="wakil_id" class="form-select">
-                            <option>Pilih Wakil</option>
-                            @foreach ($wakils as $item)
-                                <option value="{{ $item->id }}" {{ $item->id === $data->wakil_id ? 'selected' : '' }}>
-                                    {{ $item->user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
                     <div class="col-6">
                         <label for=""> Visi</label>
-                        <textarea id="editor" name="visi">{!! $data->visi !!}</textarea>
+                        <textarea id="editor" name="visi">{{ $paslon->visi }}</textarea>
                     </div>
                     <div class="col-6">
                         <label for=""> Misi</label>
-                        <textarea id="editor2" name="misi">{!! $data->misi !!}</textarea>
+                        <textarea id="editor2" name="misi">{{ $paslon->misi }}</textarea>
                     </div>
                     <div class="col-12 mt-4">
                         <button type="submit" class="btn btn-himafh">Submit</button>
@@ -69,6 +78,5 @@
             CKEDITOR.replace("editor");
             CKEDITOR.replace("editor2");
         </script>
-
     @endpush
 @endsection
