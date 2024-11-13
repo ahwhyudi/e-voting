@@ -42,8 +42,16 @@ class DPTController extends Controller
         ]);
 
         $data = $request->except("_token", "_method");
+        $arrayNisn = str_split($request->nisn);
+        $password = "";
+        foreach ($arrayNisn as $index => $item) {
+            if ($index >= count($arrayNisn) / 2) {
+                $password = "$password$item";
+            }
+        }
 
-        $data["password"] = Hash::make($request->password);
+
+        $data["password"] = Hash::make("2024#$password");
 
         $user = User::create($data);
 

@@ -19,7 +19,6 @@ class CreatePaslonsTable extends Migration
             $table->string("nama_lengkap_wakil");
             $table->string("foto");
             $table->string("nomor");
-            $table->longText("frame_youtube")->nullable();
             $table->longText("visi");
             $table->longText("misi");
             $table->timestamps();

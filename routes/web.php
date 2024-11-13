@@ -39,6 +39,7 @@ Route::get('show', function () {
 });
 
 Route::get('/', function () {
+    dd("CEK");
     return view('welcome');
 });
 

@@ -17,9 +17,9 @@
                     <div class="card-body shadow">
                         {{-- filter table --}}
                         <div class="row mb-2">
-                            <div class="col">
+                            <div class="col-md-6">
                                 <label for="">Cari</label>
-                                <input type="text" class="form-control" placeholder="cari nama, nim, email"
+                                <input type="text" class="form-control" placeholder="cari nama, nisn"
                                     wire:model.debounce.400ms="keyword">
                                 <span class="text-primary mt-2" wire:loading wire:target="keyword">
                                     <div class="spinner-border" role="status">
@@ -28,7 +28,7 @@
                                 </span>
                             </div>
 
-                            <div class="col">
+                            {{-- <div class="col">
                                 <label for="">Jumlah Data</label>
                                 <select class="form-select" wire:model="jmlData">
                                     <option value="">Pilih</option>
@@ -42,7 +42,7 @@
                                         <span class="sr-only"></span>
                                     </div>
                                 </span>
-                            </div>
+                            </div> --}}
                         </div>
                         {{-- endfilter table --}}
                         <!-- Default Table -->

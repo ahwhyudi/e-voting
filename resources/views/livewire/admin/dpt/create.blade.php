@@ -24,12 +24,7 @@
                         </label>
                         <input type="text" class="form-control" required name="kelas">
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="" class="form-label required">
-                            Password
-                        </label>
-                        <input type="password" class="form-control" required name="password">
-                    </div>
+
 
                     <div class="col-12">
                         <button class="btn btn-primary">

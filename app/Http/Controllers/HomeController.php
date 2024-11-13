@@ -24,10 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $paslon = Paslon::with('ketua.user', 'wakil.user')->get();
-
-        return view('home', [
-            'paslon' => $paslon
-        ]);
+        dd("CEK");
+        return view('home');
     }
 }

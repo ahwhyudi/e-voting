@@ -7,7 +7,7 @@
     <meta property="og:site_name" content="https://himafhunpam.com/">
     <meta property="og:title" content="Himpunan Mahasiswa Fakultas Hukum Universitas Pamulang 2022" />
     <meta property="og:description" content="Himpunan Mahasiswa Fakultas Hukum Universitas Pamulang 2022" />
-    <Meta Content='Himpunan Mahasiswa Hukum Universitas Pamulang' Name='description'/>
+    <Meta Content='Himpunan Mahasiswa Hukum Universitas Pamulang' Name='description' />
     <meta property="og:image:type" content="image">
     <!-- Size of image. Any size up to 300. Anything above 300px will not work in WhatsApp -->
     <meta property="og:image:width" content="300">
@@ -24,8 +24,10 @@
 </head>
 
 <body>
-    <link itemprop="thumbnailUrl" href="url_gambar"> <span itemprop="thumbnail" itemscope itemtype="https://himafhunpam.com/logo_hima.jpg"> 
-    <link itemprop="url" href="https://himafhunpam.com/logo_hima.jpg"> </span>
+    <link itemprop="thumbnailUrl" href="url_gambar"> <span itemprop="thumbnail" itemscope
+        itemtype="https://himafhunpam.com/logo_hima.jpg">
+        <link itemprop="url" href="https://himafhunpam.com/logo_hima.jpg">
+    </span>
     @include('includes.front.navbar')
     <section id="hero" class="d-flex align-items-center" style="">
         <div class="container">
@@ -49,8 +51,10 @@
                         <a href="{{ route('login') }}" class="btn-get-started scrollto">Login</a>
                     </div>
                 </div>
-                <div class="col-lg-6 order-1 order-lg-2 hero-img d-flex justidy-content-center align-items-center" data-aos="fade-left" data-aos-delay="200">
-                    <img src="{{ asset('images/bannerosis.png') }}" class="img-fluid animated"  style="heigt:600px" alt="" />
+                <div class="col-lg-6 order-1 order-lg-2 hero-img d-flex justidy-content-center align-items-center"
+                    data-aos="fade-left" data-aos-delay="200">
+                    <img src="{{ asset('images/bannerosis.png') }}" class="img-fluid animated" style="heigt:600px"
+                        alt="" />
                 </div>
             </div>
         </div>
@@ -58,70 +62,70 @@
     {{-- Konten --}}
     <main id="main">
         {{-- Calon --}}
-        <section id="calon" class="team section-bg" >
+        <section id="calon" class="team section-bg">
             <div class="container">
                 <div class="section-title" data-aos="fade-up">
                     <h2>Kandidat</h2>
                     <p>Ayo pilih kandidat terbaikmu</p>
                 </div>
                 <div class="row justify-content-center">
-                    {{-- @foreach ($paslon as $item) --}}
-                    @for ($i=1;$i<=3;$i++)
+                    @foreach ($paslons as $paslon)
                         <div class="col-11 col-lg-4 d-flex align-items-stretch">
                             <div class="member" data-aos="fade-up" data-aos-delay="100">
-                                <div class="d-flex justify-content-around">
-                                    <img src="{{-- {{ asset('/storage/' . $item->foto) }} --}}{{ asset('images/wakil.png') }}"
-                                    class="img-fluid" alt="" />
-                                    <img src="{{-- {{ asset('/storage/' . $item->foto) }} --}}{{ asset('images/wakil.png') }}"
-                                    class="img-fluid" alt="" />
+                                <div class="justify-content-around">
+                                    <img src="{{ asset('/storage/' . $paslon->foto) }}" class="img-fluid"
+                                        alt="" />
                                 </div>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-12">
                                         <div class="member-info">
-                                            <h6 style="font-size: 14px">{{-- {{ $item->ketua->user->name }} --}} ahmad</h6>
+                                            <h6 style="font-size: 14px">
+                                                {{ $paslon->nama_lengkap_ketua }}
+                                            </h6>
                                             <p style="font-size: 12px">Calon Ketua Umum</p>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-12">
                                         <div class="member-info">
-                                            <h6 style="font-size: 14px">{{-- {{ $item->wakil->user->name }} --}}budi</h6>
+                                            <h6 style="font-size: 14px">{{ $paslon->nama_lengkap_wakil }}</h6>
                                             <p style="font-size: 12px">Calon Wakil Ketua Umum</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="d-grid gap-2 mb-2">
                                     <a href="{{-- {{ route('profile', $item->id) }} --}}" class="btn btn-primary mx-2 mt-1 py-2">Profil
-                                        Kandidat 0{{ $i }}{{-- {{ $item->nomor }} --}}</a>
+                                        Kandidat 0{{ $paslon->nomor }}{{-- {{ $item->nomor }} --}}</a>
                                 </div>
 
                             </div>
                         </div>
-                        @endfor
-                    {{-- @endforeach  --}}
+                    @endforeach
                 </div>
             </div>
         </section>
         <section id="pertanyaan" class="faq">
-            
-            
+
+
             <div class="container">
                 <div class="section-title" data-aos="fade-up">
                     <h2>Q & A</h2>
                 </div>
-                @for ($i=0;$i<3;$i++)
-                <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                <div class="col-lg-5">
-                    <i class="ri-question-line"></i>
-                        <h4>
-                            Siapa saja sih yang bisa memilih calon ketua dan wakil ketua Osis SMK XXX?
-                        </h4>
+                @for ($i = 0; $i < 3; $i++)
+                    <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                        <div class="col-lg-5">
+                            <i class="ri-question-line"></i>
+                            <h4>
+                                Siapa saja sih yang bisa memilih calon ketua dan wakil ketua Osis SMK XXX?
+                            </h4>
+                        </div>
+                        <div class="col-lg-7">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat voluptatem accusamus,
+                                blanditiis accusantium quas amet iure illo reiciendis ipsa omnis saepe earum itaque
+                                nesciunt aliquid fugit adipisci cum recusandae minima!
+                            </p>
+                        </div>
                     </div>
-                    <div class="col-lg-7">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat voluptatem accusamus, blanditiis accusantium quas amet iure illo reiciendis ipsa omnis saepe earum itaque nesciunt aliquid fugit adipisci cum recusandae minima!
-                        </p>
-                    </div>
-                </div>
                 @endfor
             </div>
         </section>
@@ -138,12 +142,9 @@
                         <div class="contact-about">
                             <h3>Sosial Media</h3>
                             <div class="social-links">
-                                <a href="#" class="twitter"><i
-                                        class="bi bi-twitter"></i></a>
-                                <a href="#" class="instagram"><i
-                                        class="bi bi-instagram"></i></a>
-                                <a href="#" class="youtube"><i
-                                    class="bi bi-youtube"></i></a>
+                                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                                <a href="#" class="youtube"><i class="bi bi-youtube"></i></a>
                             </div>
                         </div>
                     </div>
@@ -174,8 +175,8 @@
                     <div class="col-lg-5 col-md-12" data-aos="fade-up" data-aos-delay="300">
                         <form action="forms/contact.php" method="post" role="form" class="php-email-form">
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
-                                    required />
+                                <input type="text" name="name" class="form-control" id="name"
+                                    placeholder="Your Name" required />
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control" name="email" id="email"
@@ -186,8 +187,7 @@
                                     placeholder="Subject" required />
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message"
-                                    required></textarea>
+                                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
                             </div>
                             <div class="my-3">
                                 <div class="loading">Loading</div>
@@ -202,7 +202,7 @@
                         </form>
                     </div>
                 </div>
-            </div>  
+            </div>
         </section>
         <!-- End Contact Section -->
     </main>
@@ -234,7 +234,10 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-217270429-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
 
         gtag('config', 'UA-217270429-1');
