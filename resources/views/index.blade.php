@@ -21,6 +21,7 @@
     <meta content="" name="keywords" />
     {{-- Styling --}}
     @include('includes.front.style')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -61,51 +62,149 @@
     </section>
     {{-- Konten --}}
     <main id="main">
+
+        {{-- Chart --}}
+        <x-chart />
+        {{-- Chart end --}}
+
         {{-- Calon --}}
-        <section id="calon" class="team section-bg">
-            <div class="container">
-                <div class="section-title" data-aos="fade-up">
-                    <h2>Kandidat</h2>
-                    <p>Ayo pilih kandidat terbaikmu</p>
-                </div>
-                <div class="row justify-content-center">
-                    @foreach ($paslons as $paslon)
-                        <div class="col-11 col-lg-4 d-flex align-items-stretch">
-                            <div class="member" data-aos="fade-up" data-aos-delay="100">
-                                <div class="justify-content-around">
-                                    <img src="{{ asset('/storage/' . $paslon->foto) }}" class="img-fluid"
-                                        alt="" />
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="member-info">
-                                            <h6 style="font-size: 14px">
-                                                {{ $paslon->nama_lengkap_ketua }}
-                                            </h6>
-                                            <p style="font-size: 12px">Calon Ketua Umum</p>
+        @if (!$suara)
+            <section id="calon" class="team section-bg">
+                <div class="container">
+                    <div class="section-title" data-aos="fade-up">
+                        <h2>Kandidat</h2>
+                        <p>Ayo pilih kandidat terbaikmu</p>
+                    </div>
+                    <div class="row justify-content-center">
+                        @foreach ($paslons as $paslon)
+                            <div class="col-11 col-lg-4 d-flex align-items-stretch">
+                                <div class="member" data-aos="fade-up" data-aos-delay="100">
+                                    <div class="justify-content-around">
+                                        <img src="{{ asset('/storage/' . $paslon->foto) }}" class="img-fluid"
+                                            alt="" />
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="member-info">
+                                                <h6 style="font-size: 14px">
+                                                    {{ $paslon->nama_lengkap_ketua }}
+                                                </h6>
+                                                <p style="font-size: 12px">Calon Ketua Umum</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="member-info">
+                                                <h6 style="font-size: 14px">{{ $paslon->nama_lengkap_wakil }}</h6>
+                                                <p style="font-size: 12px">Calon Wakil Ketua Umum</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <div class="member-info">
-                                            <h6 style="font-size: 14px">{{ $paslon->nama_lengkap_wakil }}</h6>
-                                            <p style="font-size: 12px">Calon Wakil Ketua Umum</p>
-                                        </div>
+                                    <div class="d-grid gap-2 mb-2">
+                                        <div class="btn btn-primary mx-2 mt-1 py-2" data-bs-toggle="modal"
+                                            data-bs-target="#modalPaslon{{ $paslon->id }}">Profil
+                                            Kandidat 0{{ $paslon->nomor }}{{-- {{ $item->nomor }} --}}</div>
                                     </div>
-                                </div>
-                                <div class="d-grid gap-2 mb-2">
-                                    <a href="{{-- {{ route('profile', $item->id) }} --}}" class="btn btn-primary mx-2 mt-1 py-2">Profil
-                                        Kandidat 0{{ $paslon->nomor }}{{-- {{ $item->nomor }} --}}</a>
-                                </div>
 
+
+
+
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+
+                            <div class="modal fade" id="modalPaslon{{ $paslon->id }}" tabindex="-1"
+                                aria-labelledby="modalPaslon{{ $paslon->id }}Label" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modalPaslon{{ $paslon->id }}Label">
+                                                Kandidat 0{{ $paslon->nomor }}
+                                            </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="text-center">
+                                                <img src="{{ asset('/storage/' . $paslon->foto) }}"
+                                                    class="img-fluid rounded mb-2" alt=""
+                                                    style="width: 50%" />
+                                            </div>
+
+                                            <div class="row text-center">
+                                                <div class="col-12">
+                                                    <div class="member-info">
+                                                        <h6 style="font-size: 14px">
+                                                            {{ $paslon->nama_lengkap_ketua }}
+                                                        </h6>
+                                                        <p style="font-size: 12px">Calon Ketua Umum</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="member-info">
+                                                        <h6 style="font-size: 14px">{{ $paslon->nama_lengkap_wakil }}
+                                                        </h6>
+                                                        <p style="font-size: 12px">Calon Wakil Ketua Umum</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <h3>
+                                                Visi
+                                            </h3>
+                                            {!! $paslon->visi !!}
+                                            <hr>
+                                            <h3>
+                                                Misi
+                                            </h3>
+                                            {!! $paslon->misi !!}
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary w-100"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#InputPassword{{ $paslon->id }}">Pilih</button>
+                                            <button type="button" class="btn btn-outline-secondary w-100"
+                                                data-bs-dismiss="modal">Tutup</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Modal Make:sure pilihan --}}
+                            <div class="modal fade" id="InputPassword{{ $paslon->id }}" tabindex="-1"
+                                aria-labelledby="InputPassword{{ $paslon->id }}Label" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            {{-- <h1 class="modal-title fs-5" id="InputPassword{{ $paslon->id }}Label">Input Password</h1> --}}
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ route('voting') }}" method="post">
+                                                @csrf
+                                                <h5 class="text-center">
+                                                    Masukan Password Untuk Memilih Paslon 0{{ $paslon->nomor }}
+                                                </h5>
+                                                <input type="text" name="paslon_id" hidden
+                                                    value="{{ $paslon->id }}">
+                                                <input type="password" name="password" class="form-control">
+                                                <button type="submit"
+                                                    class="btn btn-primary w-100 mt-4">Konfirmasi</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- Modal Make:sure pilihan end --}}
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
+
+        {{-- QnA --}}
         <section id="pertanyaan" class="faq">
-
-
             <div class="container">
                 <div class="section-title" data-aos="fade-up">
                     <h2>Q & A</h2>
@@ -129,6 +228,7 @@
                 @endfor
             </div>
         </section>
+        {{-- QnA end --}}
 
         <!-- ======= Contact Section ======= -->
         <section id="kontak" class="contact">
@@ -230,6 +330,8 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
+
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-217270429-1"></script>
     <script>
@@ -250,6 +352,27 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('frontend/home/assets/js/main.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (Session::get('success'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "{{ Session::get('success') }}"
+            })
+        </script>
+    @endif
+    @if (Session::get('error'))
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "{{ Session::get('error') }}"
+            })
+        </script>
+    @endif
+
+    @stack('addScript')
 </body>
 
 </html>

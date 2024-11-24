@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PaslonController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepanController;
 use App\Http\Controllers\Front\ProfileKandidatController;
+use App\Http\Controllers\HomeController;
 use App\Http\Livewire\Admin\CalonLiveWire;
 use App\Http\Livewire\Admin\DashboardLiveWire;
 use App\Http\Livewire\Admin\PaslonCreateLiveWire;
@@ -42,6 +43,8 @@ Route::get('/', function () {
     dd("CEK");
     return view('welcome');
 });
+
+Route::post("voting", [HomeController::class, "voting"])->name("voting")->middleware("auth");
 
 Route::get('/dashboard', DashboardLiveWire::class)->name('dashboard-admin')->middleware('auth', 'admin');
 

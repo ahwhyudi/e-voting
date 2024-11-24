@@ -11,4 +11,9 @@ class Paslon extends Model
 
     protected $table = "paslon";
     protected $guarded = [];
+
+    public function suara()
+    {
+        return $this->hasMany(Suara::class, "paslon_id", "id");
+    }
 }

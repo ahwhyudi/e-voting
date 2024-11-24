@@ -43,11 +43,8 @@
                         <label for="">Masukan Foto</label>
                         <input type="file" class="form-control" name="foto">
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="">Frame Youtube</label>
-                        <input type="text" class="form-control" name="frame_youtube">
-                    </div>
-                    <div class="col-12">
+
+                    <div class="col-6">
                         <label for="">Pasang Nomor Urut</label>
                         <input type="number" class="form-control" name="nomor" value="{{ old('nomor') }}">
                     </div>

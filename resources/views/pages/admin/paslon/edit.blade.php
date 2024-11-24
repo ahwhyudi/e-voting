@@ -47,12 +47,8 @@
                         <input type="file" class="form-control" name="foto">
                         <small>*Kosongkan jika tidak ingin di ubah</small>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="">Frame Youtube</label>
-                        <input type="text" class="form-control" name="frame_youtube"
-                            value="{{ $paslon->frame_youtube }}">
-                    </div>
-                    <div class="col-12">
+
+                    <div class="col-6">
                         <label for="">Pasang Nomor Urut</label>
                         <input type="number" class="form-control" name="nomor" value="{{ $paslon->nomor }}">
                     </div>

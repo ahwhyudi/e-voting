@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Paslon;
+use App\Models\Suara;
 use Illuminate\Http\Request;
 
 class DepanController extends Controller
@@ -11,8 +12,12 @@ class DepanController extends Controller
     {
         $paslon = Paslon::orderBy('nomor', 'asc')->get();
 
+        $suara = Suara::where("user_id", auth()->user()->id ?? null)->first();
+
+
         return view('index', [
-            'paslons' => $paslon
+            'paslons' => $paslon,
+            "suara" => $suara
         ]);
     }
 }

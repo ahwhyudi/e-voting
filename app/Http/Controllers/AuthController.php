@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -18,6 +20,15 @@ class AuthController extends Controller
                 ]);
         }
 
-        dd($user);
+        if (!Hash::check($request->password, $user->password)) {
+            return redirect()->back()
+                ->withErrors([
+                    "nisn" => "Password salah"
+                ]);
+        }
+
+        Auth::login($user);
+
+        return redirect()->intended('/');
     }
 }
