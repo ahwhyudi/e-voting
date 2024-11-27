@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta property="og:site_name" content="https://himafhunpam.com/">
+    {{-- <meta property="og:site_name" content="https://himafhunpam.com/">
     <meta property="og:title" content="Himpunan Mahasiswa Fakultas Hukum Universitas Pamulang 2022" />
     <meta property="og:description" content="Himpunan Mahasiswa Fakultas Hukum Universitas Pamulang 2022" />
     <Meta Content='Himpunan Mahasiswa Hukum Universitas Pamulang' Name='description' />
@@ -15,7 +15,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://himafhunpam.com/logo_hima.jpg">
     <meta property="og:image" itemprop="image" content="https://himafhunpam.com/logo_hima.jpg">
-    <meta property="og:updated_time" content="1440432930" />
+    <meta property="og:updated_time" content="1440432930" /> --}}
     <title>E-Voting</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
@@ -126,8 +126,7 @@
                                         <div class="modal-body">
                                             <div class="text-center">
                                                 <img src="{{ asset('/storage/' . $paslon->foto) }}"
-                                                    class="img-fluid rounded mb-2" alt=""
-                                                    style="width: 50%" />
+                                                    class="img-fluid rounded mb-2" alt="" style="width: 50%" />
                                             </div>
 
                                             <div class="row text-center">
@@ -160,8 +159,7 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary w-100"
-                                                data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
                                                 data-bs-target="#InputPassword{{ $paslon->id }}">Pilih</button>
                                             <button type="button" class="btn btn-outline-secondary w-100"
                                                 data-bs-dismiss="modal">Tutup</button>

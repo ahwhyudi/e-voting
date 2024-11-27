@@ -24,6 +24,13 @@
                 <span>Paslon</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link  {{ request()->is('dashboard/data-admin*') ? '' : 'collapsed' }}"
+                href="{{ route('data-admin.index') }}">
+                <i class="bi bi-person-square"></i>
+                <span>Admin</span>
+            </a>
+        </li>
 
     </ul>
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DashboarController;
 use App\Http\Controllers\Admin\DPTController;
 use App\Http\Controllers\Admin\KandidatController;
 use App\Http\Controllers\Admin\PaslonController;
@@ -46,19 +48,23 @@ Route::get('/', function () {
 
 Route::post("voting", [HomeController::class, "voting"])->name("voting")->middleware("auth");
 
-Route::get('/dashboard', DashboardLiveWire::class)->name('dashboard-admin')->middleware('auth', 'admin');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // admin
-Route::get('dashboard/users', UserLiveWire::class)->name('livewire-user');
-Route::get('dashboard/rooms', RoomLiveWire::class)->name('livewire-room');
-Route::get('dashboard/calons', CalonLiveWire::class)->name('livewire-calon');
-Route::get('dashboard/calons/tambah', TambahKandidatLiveWire::class)->name('livewire-calon-create');
-Route::resource('dashboard/calons/paslon', PaslonController::class);
-Route::resource('dashboard/dpt', DPTController::class);
+Route::middleware("auth:admin")
+    ->group(function () {
+        Route::get('/dashboard', [DashboarController::class, "index"])->name('dashboard-admin');
+        Route::get('dashboard/users', UserLiveWire::class)->name('livewire-user');
+        Route::get('dashboard/rooms', RoomLiveWire::class)->name('livewire-room');
+        Route::get('dashboard/calons', CalonLiveWire::class)->name('livewire-calon');
+        Route::get('dashboard/calons/tambah', TambahKandidatLiveWire::class)->name('livewire-calon-create');
+        Route::resource('dashboard/calons/paslon', PaslonController::class);
+        Route::resource('dashboard/dpt', DPTController::class);
+        Route::resource('dashboard/data-admin', AdminController::class);
+    });
 
 
 Route::prefix("dashboard")->name("dashboard.")->group(function () {
@@ -79,6 +85,7 @@ Route::get('vote/{id}', [ProfileKandidatController::class, 'vote'])->name('vote'
 
 Route::get('logout', function () {
     Auth::logout();
+    Auth::guard("admin")->logout();
     return redirect('/');
 })->name('logout');
 
@@ -99,5 +106,13 @@ Route::get('secret', function () {
 })->middleware('auth', 'admin');
 
 
+Route::get("editProfile", [AuthController::class, "editProfile"])->name("editProfile")->middleware("auth");
+Route::post("updatePassword", [AuthController::class, "updatePassword"])->name("updatePassword")->middleware("auth");
+
 
 Route::post("prosesLogin", [AuthController::class, "prosesLogin"])->name("prosesLogin");
+
+Route::post("loginAdmmin", [AuthController::class, "loginAdmmin"])->name("loginAdmmin")->middleware("guest:admin");
+Route::get("login-admin", function () {
+    return view("login_admin");
+})->middleware("guest:admin");

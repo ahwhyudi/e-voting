@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class DPTController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,9 @@ class DPTController extends Controller
      */
     public function index()
     {
-        //
+        // dd(auth()->guard('admin')->user());
+        $items = Admin::orderBy("id", "desc")->get();
+        return view("pages.admin.user.index", compact("items"));
     }
 
     /**
@@ -26,7 +28,7 @@ class DPTController extends Controller
      */
     public function create()
     {
-        return view("livewire.admin.dpt.create");
+        return view("pages.admin.user.create");
     }
 
     /**
@@ -37,16 +39,12 @@ class DPTController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "nisn" => "required|unique:user,nisn"
-        ]);
-
         $data = $request->except("_token", "_method");
-        $password = substr($request->nisn, -5);
 
-        $data["password"] = Hash::make("2024#$password");
+        $data["password"] = Hash::make($request->password);
 
-        $user = User::create($data);
+
+        $admin = Admin::create($data);
 
         return redirect()->back()->with("success", "Berhasil simpan data");
     }
@@ -70,9 +68,11 @@ class DPTController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $admin = Admin::find($id);
 
-        return view("livewire.admin.dpt.edit", compact("user"));
+        return view("pages.admin.user.edit", [
+            'admin' => $admin
+        ]);
     }
 
     /**
@@ -84,21 +84,13 @@ class DPTController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-
-        if ($user->nisn !== $request->nisn) {
-            $request->validate([
-                "nisn" => "required|unique:user,nisn"
-            ]);
-        }
-
-        $data = $request->except("_token", "_method", "password");
+        $data = $request->except("_token", "_method", 'password');
 
         if ($request->password) {
             $data["password"] = Hash::make($request->password);
         }
 
-        $user->update($data);
+        Admin::where("id", $id)->update($data);
 
         return redirect()->back()->with("success", "Berhasil update data");
     }
@@ -111,9 +103,7 @@ class DPTController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-
-        $user->delete();
+        Admin::where("id", $id)->delete();
 
         return redirect()->back()->with("success", "Berhasil hapus data");
     }

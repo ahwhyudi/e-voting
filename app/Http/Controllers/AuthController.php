@@ -11,6 +11,7 @@ class AuthController extends Controller
 {
     public function prosesLogin(Request $request)
     {
+
         $user = User::where("nisn", $request->nisn)->first();
 
         if (!$user) {
@@ -30,5 +31,30 @@ class AuthController extends Controller
         Auth::login($user);
 
         return redirect()->intended('/');
+    }
+
+    public function loginAdmmin(Request $request)
+    {
+        if (auth()->guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect("/dashboard");
+        }
+
+        return redirect()->back()->withErrors([
+            'email' => "Email atau password salah"
+        ])->withInput();
+    }
+
+    public function editProfile()
+    {
+        return view("pages.profile");
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $user = User::where("id", auth()->user()->id)->update([
+            "password" => Hash::make($request->password)
+        ]);
+
+        return redirect()->back()->with("success", "Berhasil update profile");
     }
 }

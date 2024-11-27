@@ -54,6 +54,6 @@ class HomeController extends Controller
 
         $insert = Suara::create($data);
 
-        return redirect()->back()->with("success", "Berhasil pilih kandidat");
+        return redirect()->back()->with("success", "Pemiliha telah berhasil dilakukan");
     }
 }

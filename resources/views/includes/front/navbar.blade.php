@@ -23,7 +23,7 @@
                 </li> --}}
                 <li>
                     <a class="nav-link scrollto {{ request()->is('/') ? 'active' : '' }}"
-                        href="#calon"> Kandidat</a>
+                        href="{{ route('depan') }}#calon"> Kandidat</a>
                 </li>
                 @guest
                     <li>
@@ -34,9 +34,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ Auth::user()->name }}
+                            {{ Auth::user()->nama_lengkap }}
                         </a>
+
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('editProfile') }}">Profile</a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                         </ul>
                     </li>
